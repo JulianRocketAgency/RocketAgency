@@ -9,7 +9,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Syne:wght@400;500;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet"/>
-  <link rel="stylesheet" href="css/global.css"/>
+  <link rel="stylesheet" href="/css/global.css"/>
   <style>
     /* ── HERO ─────────────────────────────────────────── */
     #home {
@@ -469,11 +469,11 @@
     </div>
   </footer>
 
-  <script src="js/blog-engine.js"></script>
-  <script src="js/global.js"></script>
+  <script src="/js/blog-engine.js"></script>
+  <script src="/js/global.js"></script>
   <script>
     // Blog preview: toon eerste 3 posts
-    const posts = RocketBlog.storage.getAll().slice(0, 3);
+    const posts = RocketBlog.posts.slice(0, 3);
     RocketBlog.render(document.getElementById('home-blog-grid'), posts, 'grid-featured');
 
     // Dienst cards klikbaar
