@@ -239,74 +239,143 @@
     </div>
   </footer>
 
-  <script src="/js/blog-engine.js"></script>
-  <script src="/js/global.js"></script>
   <script>
-    let currentCat = 'Alle';
-    let currentView = 'grid';
-    let currentQuery = '';
+  /* ── BLOG DATA (inline, altijd beschikbaar) ── */
+  const POSTS = [
+    {
+      title: 'AI Agents: waarom 2025 het jaar van autonome software wordt',
+      excerpt: 'Van simpele chatbots naar agents die zelfstandig taken uitvoeren, code schrijven en beslissingen nemen. Wat betekent dit voor jouw bedrijf?',
+      category: 'AI Oplossingen',
+      date: '25 maart 2026',
+      readTime: 7,
+      slug: 'ai-agents-2025'
+    },
+    {
+      title: 'Code generatie met LLMs: Python-automatiseringen 10× sneller bouwen',
+      excerpt: 'Grote taalmodellen veranderen hoe software gebouwd wordt. Wij laten zien hoe we LLMs inzetten om complexe automatiseringen razendsnel te ontwikkelen.',
+      category: 'Automatisering',
+      date: '20 maart 2026',
+      readTime: 6,
+      slug: 'llm-code-generatie-python'
+    },
+    {
+      title: 'RAG in de praktijk: een AI die écht jouw bedrijfsdocumenten begrijpt',
+      excerpt: 'Retrieval-Augmented Generation is de technologie achter AI die antwoord geeft op basis van jouw eigen data. Geen hallucinaties, geen vage antwoorden.',
+      category: 'AI Oplossingen',
+      date: '15 maart 2026',
+      readTime: 8,
+      slug: 'rag-kennisbanken-praktijk'
+    }
+  ];
 
-    function getFilteredPosts() {
-      let posts = [...BLOG_POSTS].sort((a, b) => new Date(b.date) - new Date(a.date));
-      if (currentCat !== 'Alle') posts = posts.filter(p => p.category === currentCat);
-      if (currentQuery.trim()) posts = posts.filter(p =>
-        p.title.toLowerCase().includes(currentQuery.toLowerCase()) ||
-        p.excerpt.toLowerCase().includes(currentQuery.toLowerCase()) ||
-        p.tags.some(t => t.toLowerCase().includes(currentQuery.toLowerCase()))
+  const catColors = {
+    'AI Oplossingen':     'rgba(201,168,76,.12)',
+    'Automatisering':     'rgba(100,180,255,.08)',
+    'Social Media':       'rgba(180,100,255,.08)',
+    'Digitale Marketing': 'rgba(100,220,150,.08)'
+  };
+
+  const catIcons = {
+    'AI Oplossingen': `<svg width="48" height="48" viewBox="0 0 48 48" fill="none"><rect x="6" y="6" width="36" height="36" rx="3" stroke="currentColor" stroke-width="1.2"/><circle cx="24" cy="24" r="6" stroke="currentColor" stroke-width="1.2"/><path d="M24 6V18M24 30V42M6 24H18M30 24H42" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>`,
+    'Automatisering': `<svg width="48" height="48" viewBox="0 0 48 48" fill="none"><path d="M8 24C8 15.163 15.163 8 24 8" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/><path d="M40 24C40 32.837 32.837 40 24 40" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/><path d="M24 8L20 4M24 8L20 12" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/><circle cx="24" cy="24" r="5" stroke="currentColor" stroke-width="1.2"/></svg>`,
+    'Social Media':   `<svg width="48" height="48" viewBox="0 0 48 48" fill="none"><circle cx="12" cy="24" r="5" stroke="currentColor" stroke-width="1.2"/><circle cx="36" cy="12" r="5" stroke="currentColor" stroke-width="1.2"/><circle cx="36" cy="36" r="5" stroke="currentColor" stroke-width="1.2"/><path d="M17 21L31 15M17 27L31 33" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>`,
+    'Digitale Marketing': `<svg width="48" height="48" viewBox="0 0 48 48" fill="none"><path d="M8 36L18 24L26 30L36 18L44 12" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/><path d="M8 42H44" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>`
+  };
+
+  let currentCat = 'Alle';
+  let currentQuery = '';
+  let currentView = 'grid';
+
+  function getFiltered() {
+    let posts = [...POSTS];
+    if (currentCat !== 'Alle') posts = posts.filter(p => p.category === currentCat);
+    if (currentQuery.trim()) {
+      const q = currentQuery.toLowerCase();
+      posts = posts.filter(p =>
+        p.title.toLowerCase().includes(q) ||
+        p.excerpt.toLowerCase().includes(q) ||
+        p.category.toLowerCase().includes(q)
       );
-      return posts;
+    }
+    return posts;
+  }
+
+  function renderPosts() {
+    const posts = getFiltered();
+    const container = document.getElementById('posts-container');
+    const countEl = document.getElementById('count-num');
+    if (countEl) countEl.textContent = posts.length;
+
+    if (!posts.length) {
+      container.innerHTML = '<div class="no-results"><h3 class="no-results-title">Geen artikelen gevonden</h3><p class="no-results-desc">Probeer een andere zoekterm of categorie.</p></div>';
+      return;
     }
 
-    function renderPosts() {
-      const posts = getFilteredPosts();
-      const container = document.getElementById('posts-container');
-      document.getElementById('count-num').textContent = posts.length;
-
-      if (!posts.length) {
-        container.innerHTML = '<div class="no-results"><h3 class="no-results-title">Geen artikelen gevonden</h3><p class="no-results-desc">Probeer een andere zoekterm of categorie.</p></div>';
-        return;
-      }
-
-      if (currentView === 'grid') {
-        container.className = 'posts-grid';
-        renderBlogGrid(container, posts, 'grid-uniform');
-      } else {
-        container.className = 'blog-list';
-        renderBlogGrid(container, posts, 'list');
-      }
+    if (currentView === 'grid') {
+      container.className = 'posts-grid';
+      container.innerHTML = posts.map(p => `
+        <article class="blog-card-uni" style="cursor:pointer" onclick="window.location='/blog/${p.slug}'">
+          <div class="bcu-img" style="background:linear-gradient(145deg,var(--black3),${catColors[p.category]||'rgba(201,168,76,.06)'})">
+            <div class="bcu-icon" style="color:rgba(201,168,76,.3)">${catIcons[p.category]||''}</div>
+            <span class="bcu-cat">${p.category}</span>
+          </div>
+          <div class="bcu-body">
+            <h3 class="bcu-title">${p.title}</h3>
+            <p class="bcu-excerpt">${p.excerpt}</p>
+            <div class="bcu-meta"><span>${p.date}</span><span>${p.readTime} min leestijd</span></div>
+            <div class="bcu-link">Lees artikel <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 10L10 2M10 2H4M10 2V8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          </div>
+        </article>
+      `).join('');
+    } else {
+      container.className = 'blog-list';
+      container.innerHTML = posts.map((p, i) => `
+        <article class="blog-list-item" style="cursor:pointer" onclick="window.location='/blog/${p.slug}'">
+          <div class="bli-num">${String(i+1).padStart(2,'0')}</div>
+          <div class="bli-body">
+            <div class="bli-cat">${p.category}</div>
+            <h3 class="bli-title">${p.title}</h3>
+            <p class="bli-excerpt">${p.excerpt}</p>
+          </div>
+          <div class="bli-meta">
+            <span class="bli-date">${p.date}</span>
+            <span class="bli-read">${p.readTime} min</span>
+            <div class="bli-arrow"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 13L13 3M13 3H5M13 3V11" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          </div>
+        </article>
+      `).join('');
     }
+  }
 
-    document.querySelectorAll('.cat-btn').forEach(btn => {
-      btn.addEventListener('click', () => {
-        document.querySelectorAll('.cat-btn').forEach(b => b.classList.remove('active'));
-        btn.classList.add('active');
-        currentCat = btn.dataset.cat;
-        renderPosts();
-      });
-    });
-
-    let searchTimeout;
-    document.getElementById('search-input').addEventListener('input', (e) => {
-      clearTimeout(searchTimeout);
-      searchTimeout = setTimeout(() => { currentQuery = e.target.value; renderPosts(); }, 250);
-    });
-
-    document.getElementById('grid-view').addEventListener('click', () => {
-      currentView = 'grid';
-      document.getElementById('grid-view').classList.add('active');
-      document.getElementById('list-view').classList.remove('active');
+  document.querySelectorAll('.cat-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.cat-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      currentCat = btn.dataset.cat;
       renderPosts();
     });
+  });
 
-    document.getElementById('list-view').addEventListener('click', () => {
-      currentView = 'list';
-      document.getElementById('list-view').classList.add('active');
-      document.getElementById('grid-view').classList.remove('active');
-      renderPosts();
-    });
+  let searchTimeout;
+  document.getElementById('search-input').addEventListener('input', e => {
+    clearTimeout(searchTimeout);
+    searchTimeout = setTimeout(() => { currentQuery = e.target.value; renderPosts(); }, 250);
+  });
 
+  document.getElementById('grid-view').addEventListener('click', () => {
+    currentView = 'grid';
+    document.getElementById('grid-view').classList.add('active');
+    document.getElementById('list-view').classList.remove('active');
     renderPosts();
-  </script>
+  });
+
+  document.getElementById('list-view').addEventListener('click', () => {
+    currentView = 'list';
+    document.getElementById('list-view').classList.add('active');
+    document.getElementById('grid-view').classList.remove('active');
+    renderPosts();
+  });
+
+  renderPosts();
+</script>
   <script src="/js/chatbot.js"></script>
-</body>
-</html>
