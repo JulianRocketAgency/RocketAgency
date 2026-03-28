@@ -473,7 +473,7 @@
   <script src="/js/global.js"></script>
   <script>
     // Blog preview: toon eerste 3 posts
-    const posts = RocketBlog.posts.slice(0, 3);
+    const posts = [...RocketBlog.posts].sort((a, b) => new Date(b.date) - new Date(a.date)).slice(0, 3);
     RocketBlog.render(document.getElementById('home-blog-grid'), posts, 'grid-featured');
 
     // Dienst cards klikbaar

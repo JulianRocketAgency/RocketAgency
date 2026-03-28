@@ -247,7 +247,7 @@
     let currentQuery = '';
 
     function getFilteredPosts() {
-      let posts = BLOG_POSTS;
+      let posts = [...BLOG_POSTS].sort((a, b) => new Date(b.date) - new Date(a.date));
       if (currentCat !== 'Alle') posts = posts.filter(p => p.category === currentCat);
       if (currentQuery.trim()) posts = posts.filter(p =>
         p.title.toLowerCase().includes(currentQuery.toLowerCase()) ||
