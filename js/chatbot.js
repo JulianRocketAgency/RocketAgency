@@ -8,7 +8,7 @@
 
 const CHATBOT_CONFIG = {
   // ▼ Vervang met jouw Together AI key
-  apiKey: 'tgp_v1__tEDdCVNFCY-80eDM9LqGB3Qmsuh-L0y4p1BpaewhJk',
+  apiKey: 'TOGETHER_API_KEY_HIER',
 
   model: 'meta-llama/Llama-3.3-70B-Instruct-Turbo',
   maxTokens: 512,

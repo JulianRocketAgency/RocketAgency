@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="description" content="Van simpele chatbots naar agents die zelfstandig taken uitvoeren, code schrijven en beslissingen nemen. Wat betekent dit voor jouw bedrijf?"/>
+  <title>AI Agents: waarom 2025 het jaar van autonome software wordt — Rocket Agency</title>
+  <link rel="icon" type="image/png" href="/img/favicon.png"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Syne:wght@400;500;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="/css/global.css"/>
+  <style>
+    .artikel-wrap { position: relative; z-index: 2; max-width: 780px; margin: 0 auto; padding: calc(var(--nav-h) + 80px) var(--pad-x) 140px; }
+    .artikel-meta { display: flex; align-items: center; gap: 20px; margin-bottom: 48px; flex-wrap: wrap; }
+    .artikel-cat { font-family: var(--font-ui); font-size: .68rem; letter-spacing: .25em; text-transform: uppercase; color: var(--gold); border: 1px solid var(--border); padding: 6px 16px; border-radius: 20px; }
+    .artikel-datum { font-family: var(--font-ui); font-size: .72rem; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); }
+    .artikel-leestijd { font-family: var(--font-ui); font-size: .72rem; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); }
+    .artikel-h1 { font-family: var(--font-display); font-size: clamp(2.6rem, 5vw, 4.5rem); font-weight: 300; line-height: 1.08; margin-bottom: 32px; }
+    .artikel-h1 em { font-style: italic; color: var(--gold); }
+    .artikel-intro { font-size: 1.2rem; color: var(--muted2); line-height: 1.85; margin-bottom: 64px; padding-bottom: 64px; border-bottom: 1px solid var(--border); font-weight: 300; }
+    .artikel-body h2 { font-family: var(--font-display); font-size: 2rem; font-weight: 300; line-height: 1.2; margin: 56px 0 24px; color: var(--white); }
+    .artikel-body h2 em { font-style: italic; color: var(--gold); }
+    .artikel-body p { font-size: 1.05rem; color: var(--muted2); line-height: 1.9; margin-bottom: 24px; }
+    .artikel-body strong { color: var(--white); font-weight: 500; }
+    .artikel-body ul { list-style: none; margin: 28px 0; display: flex; flex-direction: column; gap: 14px; }
+    .artikel-body ul li { font-size: 1.02rem; color: var(--muted2); line-height: 1.75; padding-left: 24px; position: relative; }
+    .artikel-body ul li::before { content: '—'; position: absolute; left: 0; color: var(--gold); font-weight: 300; }
+    .artikel-quote { margin: 52px 0; padding: 36px 44px; border-left: 2px solid var(--gold); background: rgba(201,168,76,.04); }
+    .artikel-quote p { font-family: var(--font-display); font-size: 1.5rem; font-weight: 300; font-style: italic; line-height: 1.5; color: var(--white); margin: 0; }
+    .artikel-code { background: var(--black3); border: 1px solid var(--border); padding: 28px 32px; margin: 32px 0; border-radius: 2px; overflow-x: auto; }
+    .artikel-code code { font-family: 'Courier New', monospace; font-size: .88rem; color: var(--gold2); line-height: 1.7; white-space: pre; }
+    .artikel-cta { margin-top: 80px; padding: 52px; background: var(--black2); border: 1px solid var(--border); text-align: center; }
+    .artikel-cta-label { font-family: var(--font-ui); font-size: .68rem; letter-spacing: .25em; text-transform: uppercase; color: var(--gold); margin-bottom: 16px; }
+    .artikel-cta h3 { font-family: var(--font-display); font-size: 2rem; font-weight: 300; margin-bottom: 16px; }
+    .artikel-cta h3 em { font-style: italic; color: var(--gold); }
+    .artikel-cta p { font-size: .97rem; color: var(--muted); margin-bottom: 32px; line-height: 1.7; }
+    .artikel-back { display: inline-flex; align-items: center; gap: 10px; font-family: var(--font-ui); font-size: .72rem; letter-spacing: .15em; text-transform: uppercase; color: var(--muted); margin-bottom: 52px; transition: color .3s; }
+    .artikel-back:hover { color: var(--gold); }
+    .artikel-author { display: flex; align-items: center; gap: 16px; padding: 32px 0; border-top: 1px solid var(--border); margin-top: 64px; }
+    .author-avatar { width: 52px; height: 52px; border-radius: 50%; overflow: hidden; flex-shrink: 0; background: var(--black3); }
+    .author-avatar img { width: 100%; height: 100%; object-fit: cover; object-position: top; }
+    .author-name { font-family: var(--font-ui); font-size: .82rem; font-weight: 700; letter-spacing: .06em; margin-bottom: 4px; }
+    .author-role { font-size: .82rem; color: var(--muted); }
+    @media (max-width: 900px) { .artikel-wrap { padding: calc(var(--nav-h) + 40px) 24px 80px; } .artikel-quote { padding: 24px 28px; } .artikel-cta { padding: 36px 24px; } }
+  </style>
+</head>
+<body>
+  <div id="cursor"></div>
+  <div id="cursor-ring"></div>
+  <canvas id="stars"></canvas>
+
+  <nav id="navbar">
+    <a href="/" class="nav-logo">
+      <img src="/img/logo.png" alt="Rocket Agency" style="height:44px;width:auto;display:block;"/>
+    </a>
+    <ul class="nav-links">
+      <li><a href="/">Home</a></li>
+      <li><a href="/diensten">Diensten</a></li>
+      <li><a href="/over">Over ons</a></li>
+      <li><a href="/blog" class="active">Insights</a></li>
+    </ul>
+    <a href="/contact" class="nav-cta">Start project</a>
+  </nav>
+
+  <article class="artikel-wrap">
+    <a href="/blog" class="artikel-back">
+      <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M11 7H3M3 7L7 3M3 7L7 11" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      Terug naar insights
+    </a>
+
+    <div class="artikel-meta">
+      <span class="artikel-cat">AI Oplossingen</span>
+      <span class="artikel-datum">20 maart 2025</span>
+      <span class="artikel-leestijd">7 min leestijd</span>
+    </div>
+
+    <h1 class="artikel-h1">AI Agents: waarom 2025 het jaar van<br><em>autonome software</em> wordt</h1>
+
+    <p class="artikel-intro">Van simpele chatbots naar agents die zelfstandig taken uitvoeren, code schrijven en beslissingen nemen. De verschuiving is fundamenteel — en de bedrijven die dit nu begrijpen, bouwen een voorsprong die over twee jaar bijna onmogelijk in te halen is.</p>
+
+    <div class="artikel-body">
+
+      <h2>Wat is een <em>AI Agent</em> precies?</h2>
+      <p>Een chatbot wacht op een vraag en geeft een antwoord. Een AI agent doet meer: hij krijgt een doel, bepaalt zelf welke stappen nodig zijn, voert die stappen uit, beoordeelt het resultaat en past zijn aanpak aan. Autonoom, in een loop, zonder dat jij elke stap hoeft te begeleiden.</p>
+      <p>Het verschil klinkt subtiel. Het is dat niet. Een chatbot is een gereedschap dat je bedient. Een agent is een systeem dat werkt terwijl jij iets anders doet.</p>
+
+      <div class="artikel-quote">
+        <p>"Een agent krijgt een doel. De rest regelt hij zelf."</p>
+      </div>
+
+      <h2>Drie soorten agents die nu <em>productierijp</em> zijn</h2>
+      <p>Niet alles wat "agent" heet is gelijk. In de praktijk zien wij drie categorieën die vandaag al betrouwbaar draaien in bedrijfsomgevingen:</p>
+      <ul>
+        <li><strong>Taakagents</strong> — voeren een afgebakende reeks stappen uit op basis van een trigger. Denk aan: nieuwe lead binnenkomt → bedrijf opzoeken → samenvatting schrijven → CRM bijwerken → gepersonaliseerde e-mail versturen. Zonder menselijke tussenkomst.</li>
+        <li><strong>Onderzoeksagents</strong> — doorzoeken meerdere bronnen, synthetiseren informatie en leveren een gestructureerd rapport. Wat een junior medewerker drie uur kost, duurt vier minuten.</li>
+        <li><strong>Code-agents</strong> — schrijven, testen en debuggen code op basis van een beschrijving. Wij gebruiken dit intern om repetitieve ontwikkelingstaken te automatiseren en sneller te itereren.</li>
+      </ul>
+
+      <h2>Waarom dit <em>nu</em> relevant is</h2>
+      <p>Tot 2024 waren agents grotendeels experimenteel. Fouten waren frequent, context werd verloren en de betrouwbaarheid was onvoldoende voor productieomgevingen. Dat is veranderd.</p>
+      <p>Modellen als GPT-4o en Claude 3.5 hebben een significant betere reasoning-capaciteit, langere context en betere tool-gebruik. Frameworks als LangGraph en CrewAI maken het mogelijk om multi-agent systemen te bouwen waarbij agents samenwerken, elkaars werk controleren en escaleren wanneer nodig.</p>
+      <p>Het resultaat: agents die betrouwbaar genoeg zijn om echte bedrijfsprocessen op te draaien.</p>
+
+      <div class="artikel-code">
+        <code># Eenvoudig voorbeeld: een agent die leads automatisch verrijkt
+from langchain.agents import AgentExecutor
+from langchain_anthropic import ChatAnthropic
+
+llm = ChatAnthropic(model="claude-3-5-sonnet-20241022")
+
+# Agent krijgt tools: websearch, CRM-schrijftoegang, e-mailsturen
+agent = AgentExecutor(
+    agent=create_react_agent(llm, tools=[
+        search_company_info,
+        update_crm_record,
+        send_personalized_email
+    ]),
+    verbose=False
+)
+
+# Eén aanroep — agent regelt de rest
+agent.invoke({"input": f"Verwerk nieuwe lead: {lead_data}"})</code>
+      </div>
+
+      <h2>De <em>praktische</em> impact voor MKB</h2>
+      <p>Voor grote corporates zijn agents een efficiëntieslag. Voor het MKB zijn ze iets fundamentelers: de mogelijkheid om te opereren met de output van een team dat drie keer zo groot is, zonder de overhead.</p>
+      <p>Concreet zien wij bij klanten de volgende toepassingen al draaien:</p>
+      <ul>
+        <li>Leadkwalificatie en eerste opvolging — volledig geautomatiseerd, 24/7</li>
+        <li>Rapportages die zichzelf schrijven op basis van live data</li>
+        <li>Klantvragen die worden beantwoord, gecategoriseerd en doorgezet zonder menselijke tussenkomst</li>
+        <li>Contentproductie waarbij research, schrijven en publiceren één geautomatiseerde flow zijn</li>
+      </ul>
+
+      <h2>Wat je <em>vandaag</em> kunt doen</h2>
+      <p>Begin niet met het meest complexe proces in je bedrijf. Begin met iets dat voldoet aan drie criteria: het kost nu veel tijd, de stappen zijn voorspelbaar en een fout heeft beperkte gevolgen.</p>
+      <p>De meeste bedrijven hebben tientallen van zulke processen. Kies er één. Bouw een agent. Meet het resultaat. Schaal van daar.</p>
+      <p>De technologie is er. De vraag is niet meer óf AI agents relevant zijn voor jouw bedrijf — de vraag is wanneer jij ermee begint.</p>
+
+    </div>
+
+    <div class="artikel-author">
+      <div class="author-avatar">
+        <img src="/img/julian.png" alt="Julian van Beek"/>
+      </div>
+      <div>
+        <div class="author-name">Julian van Beek</div>
+        <div class="author-role">Eigenaar & AI Specialist, Rocket Agency</div>
+      </div>
+    </div>
+
+    <div class="artikel-cta">
+      <div class="artikel-cta-label">Rocket Agency</div>
+      <h3>Klaar om een <em>agent te bouwen</em>?</h3>
+      <p>Wij analyseren jouw processen en bouwen een agent die direct waarde levert. Geen experimentele prototypes — productierijpe systemen.</p>
+      <a href="/contact" class="btn-primary"><span>Vraag een gesprek aan</span></a>
+    </div>
+  </article>
+
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-top">
+        <div><img src="/img/logo.png" alt="Rocket Agency" style="height:48px;width:auto;display:block;margin-bottom:16px;"/><p class="footer-tagline">Groei door intelligentie.<br>AI · Automatisering · Marketing.</p></div>
+        <div><div class="footer-col-title">Diensten</div><ul class="footer-links"><li><a href="/diensten#ai">AI Oplossingen</a></li><li><a href="/diensten#auto">Automatiseringen</a></li><li><a href="/diensten#social">Social Media</a></li><li><a href="/diensten#marketing">Digitale Marketing</a></li></ul></div>
+        <div><div class="footer-col-title">Bedrijf</div><ul class="footer-links"><li><a href="/over">Over ons</a></li><li><a href="/blog">Insights</a></li><li><a href="/contact">Contact</a></li></ul></div>
+        <div><a href="https://socialmediamanager.nl" target="_blank" style="text-decoration:none"><div class="footer-col-title" style="cursor:pointer">Volg ons ↗</div></a><ul class="footer-links"><li><a href="https://www.linkedin.com/in/julian-van-beek-35276b241/" target="_blank">LinkedIn</a></li><li><a href="https://www.instagram.com/rocket.network.agency/" target="_blank">Instagram</a></li></ul></div>
+      </div>
+      <div class="footer-bottom">
+        <span class="footer-copy">© 2025 Rocket Agency — rocket-agency.nl</span>
+        <div class="footer-legal"><a href="#">Privacybeleid</a><a href="#">Voorwaarden</a><a href="#">Cookies</a></div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="/js/blog-engine.js"></script>
+  <script src="/js/global.js"></script>
+  <script src="/js/chatbot.js"></script>
+</body>
+</html>

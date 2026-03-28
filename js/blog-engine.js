@@ -153,7 +153,7 @@ function renderBlogGrid(container, posts = BLOG_POSTS, layout = 'grid-featured')
     // Eerste post groot, rest klein
     container.innerHTML = posts.map((post, i) => `
       <article class="blog-card ${i === 0 ? 'featured' : ''} reveal reveal-delay-${Math.min(i,3)}"
-               onclick="location.href='/blog/${post.slug}'">
+               onclick="location.href='/blog/' + post.slug">
         <div class="blog-card-img">
           <div class="blog-card-img-bg" style="background:linear-gradient(135deg,var(--black3),rgba(201,168,76,${i===0?.08:.04}))">
             <div class="blog-img-icon">${getCategoryIcon(post.category)}</div>
@@ -175,7 +175,7 @@ function renderBlogGrid(container, posts = BLOG_POSTS, layout = 'grid-featured')
   if (layout === 'grid-uniform') {
     container.innerHTML = posts.map((post, i) => `
       <article class="blog-card-uni reveal reveal-delay-${Math.min(i%3,3)}"
-               onclick="location.href='/blog/${post.slug}'">
+               onclick="location.href='/blog/' + post.slug">
         <div class="bcu-img" style="background:linear-gradient(135deg,var(--black3),rgba(201,168,76,.06))">
           <div class="bcu-icon">${getCategoryIcon(post.category)}</div>
           <span class="bcu-cat">${post.category}</span>
@@ -201,7 +201,7 @@ function renderBlogGrid(container, posts = BLOG_POSTS, layout = 'grid-featured')
   if (layout === 'list') {
     container.innerHTML = posts.map((post, i) => `
       <article class="blog-list-item reveal reveal-delay-${Math.min(i%4,3)}"
-               onclick="location.href='/blog/${post.slug}'">
+               onclick="location.href='/blog/' + post.slug">
         <div class="bli-num">${String(i+1).padStart(2,'0')}</div>
         <div class="bli-body">
           <div class="bli-cat">${post.category}</div>
