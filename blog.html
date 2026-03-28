@@ -66,16 +66,16 @@
     .posts-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 2px; }
     .blog-card-uni {
       background: var(--black2); border: 1px solid var(--border);
-      overflow: hidden; cursor: none;
+      overflow: hidden; cursor: pointer;
       transition: border-color .4s;
     }
     .blog-card-uni:hover { border-color: rgba(201,168,76,.4); }
     .bcu-img {
-      width: 100%; aspect-ratio: 16/9;
+      width: 100%; aspect-ratio: 16/9; min-height: 160px;
       display: flex; align-items: center; justify-content: center;
       position: relative;
     }
-    .bcu-icon { color: rgba(201,168,76,.18); }
+    .bcu-icon { color: rgba(201,168,76,.25); transform: scale(1.2); }
     .bcu-cat {
       position: absolute; bottom: 16px; left: 20px;
       font-family: var(--font-ui); font-size: .62rem; letter-spacing: .2em;

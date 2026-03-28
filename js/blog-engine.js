@@ -173,10 +173,15 @@ function renderBlogGrid(container, posts = BLOG_POSTS, layout = 'grid-featured')
   }
 
   if (layout === 'grid-uniform') {
+    const catColors = {
+      'AI Oplossingen':    'rgba(201,168,76,.12)',
+      'Automatisering':    'rgba(100,180,255,.08)',
+      'Social Media':      'rgba(180,100,255,.08)',
+      'Digitale Marketing':'rgba(100,220,150,.08)'
+    };
     container.innerHTML = posts.map((post, i) => `
-      <article class="blog-card-uni"
-               onclick="location.href='/blog/' + post.slug">
-        <div class="bcu-img" style="background:linear-gradient(135deg,var(--black3),rgba(201,168,76,.06))">
+      <article class="blog-card-uni" style="cursor:pointer;" onclick="window.location.href='/blog/' + '${post.slug}'">
+        <div class="bcu-img" style="background:linear-gradient(145deg,var(--black3),${catColors[post.category]||'rgba(201,168,76,.06)'})">
           <div class="bcu-icon">${getCategoryIcon(post.category)}</div>
           <span class="bcu-cat">${post.category}</span>
         </div>
@@ -185,7 +190,7 @@ function renderBlogGrid(container, posts = BLOG_POSTS, layout = 'grid-featured')
           <p class="bcu-excerpt">${post.excerpt}</p>
           <div class="bcu-meta">
             <span>${formatDate(post.date)}</span>
-            <span>${post.readTime} min</span>
+            <span>${post.readTime} min leestijd</span>
           </div>
           <div class="bcu-link">
             Lees artikel
