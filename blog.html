@@ -247,7 +247,7 @@
     let currentQuery = '';
 
     function getFilteredPosts() {
-      let posts = RocketBlog.posts;
+      let posts = BLOG_POSTS;
       if (currentCat !== 'Alle') posts = posts.filter(p => p.category === currentCat);
       if (currentQuery.trim()) posts = posts.filter(p =>
         p.title.toLowerCase().includes(currentQuery.toLowerCase()) ||
@@ -263,26 +263,19 @@
       document.getElementById('count-num').textContent = posts.length;
 
       if (!posts.length) {
-        container.innerHTML = `<div class="no-results">
-          <div class="no-results-icon"><svg width="60" height="60" viewBox="0 0 60 60" fill="none"><circle cx="26" cy="26" r="16" stroke="rgba(201,168,76,.2)" stroke-width="2"/><path d="M38 38L50 50" stroke="rgba(201,168,76,.2)" stroke-width="2" stroke-linecap="round"/></svg></div>
-          <h3 class="no-results-title">Geen artikelen gevonden</h3>
-          <p class="no-results-desc">Probeer een andere zoekterm of categorie.</p>
-        </div>`;
+        container.innerHTML = '<div class="no-results"><h3 class="no-results-title">Geen artikelen gevonden</h3><p class="no-results-desc">Probeer een andere zoekterm of categorie.</p></div>';
         return;
       }
 
       if (currentView === 'grid') {
-        container.classList.remove('blog-list');
-        container.classList.add('posts-grid');
-        RocketBlog.render(container, posts, 'grid-uniform');
+        container.className = 'posts-grid';
+        renderBlogGrid(container, posts, 'grid-uniform');
       } else {
-        container.classList.remove('posts-grid');
-        container.classList.add('blog-list');
-        RocketBlog.render(container, posts, 'list');
+        container.className = 'blog-list';
+        renderBlogGrid(container, posts, 'list');
       }
     }
 
-    // Filter buttons
     document.querySelectorAll('.cat-btn').forEach(btn => {
       btn.addEventListener('click', () => {
         document.querySelectorAll('.cat-btn').forEach(b => b.classList.remove('active'));
@@ -292,50 +285,26 @@
       });
     });
 
-    // Search
     let searchTimeout;
     document.getElementById('search-input').addEventListener('input', (e) => {
       clearTimeout(searchTimeout);
       searchTimeout = setTimeout(() => { currentQuery = e.target.value; renderPosts(); }, 250);
     });
 
-    // View toggle
     document.getElementById('grid-view').addEventListener('click', () => {
       currentView = 'grid';
       document.getElementById('grid-view').classList.add('active');
       document.getElementById('list-view').classList.remove('active');
       renderPosts();
     });
+
     document.getElementById('list-view').addEventListener('click', () => {
       currentView = 'list';
       document.getElementById('list-view').classList.add('active');
       document.getElementById('grid-view').classList.remove('active');
       renderPosts();
-    });      btn.disabled = true;
-      status.className = 'writer-status loading';
-      status.textContent = '✦ Claude schrijft jouw artikel... Dit duurt zo\'n 10-20 seconden.';
+    });
 
-      try {
-        const post = await RocketBlog.writer.generateAndSave({ topic, category: cat });
-        status.className = 'writer-status success';
-        status.textContent = `✦ Artikel gepubliceerd: "${post.title}"`;
-        document.getElementById('writer-topic').value = '';
-        // Scroll naar boven en toon nieuw artikel
-        document.querySelector('.blog-main').scrollIntoView({ behavior: 'smooth' });
-        currentCat = 'Alle';
-        document.querySelectorAll('.cat-btn').forEach(b => b.classList.toggle('active', b.dataset.cat === 'Alle'));
-        renderPosts();
-      } catch (err) {
-        status.className = 'writer-status error';
-        status.textContent = `⚠ Fout: ${err.message}. Controleer je API-sleutel en verbinding.`;
-      } finally {
-        btn.disabled = false;
-      }
-    }
-
-    // Enter key voor writer
-
-    // Init
     renderPosts();
   </script>
   <script src="/js/chatbot.js"></script>
