@@ -10,7 +10,6 @@
 
 /* ── 1. SEED DATA ──────────────────────────────────── */
 const BLOG_POSTS = [
-  {
     id: 'agents-2025',
     title: 'AI Agents: waarom 2025 het jaar van autonome software wordt',
     excerpt: 'Van simpele chatbots naar agents die zelfstandig taken uitvoeren, code schrijven en beslissingen nemen. Wat betekent dit voor jouw bedrijf?',
@@ -49,84 +48,6 @@ const BLOG_POSTS = [
     slug: 'rag-kennisbanken-praktijk',
     author: 'Julian van Beek'
   },
-    {
-    id: 'ai-sales-cyclus',
-    title: 'Hoe AI jouw salescyclus met 60% kan verkorten',
-    excerpt: 'Ontdek hoe leading bedrijven AI-tools inzetten om leads sneller te kwalificeren, follow-ups te automatiseren en conversie te maximaliseren.',
-    content: '', // wordt gevuld door BlogWriter of CMS
-    category: 'AI Oplossingen',
-    tags: ['AI', 'Sales', 'Automatisering'],
-    date: '2026-03-10',
-    readTime: 6,
-    featured: true,
-    slug: 'ai-salescyclus-verkorten',
-    author: 'Julian van Beek'
-  },
-  {
-    id: 'automatiseringen-mkb',
-    title: 'De 5 automatiseringen die elke MKB-er nodig heeft',
-    excerpt: 'Van lead-nurturing tot facturatie — deze vijf workflows besparen je gemiddeld 12 uur per week en verlagen je foutmarge naar nagenoeg nul.',
-    content: '',
-    category: 'Automatisering',
-    tags: ['Make.com', 'Workflow', 'MKB'],
-    date: '2026-03-05',
-    readTime: 5,
-    featured: false,
-    slug: 'automatiseringen-mkb',
-    author: 'Julian van Beek'
-  },
-  {
-    id: 'linkedin-2025',
-    title: 'LinkedIn in 2025: wat werkt écht?',
-    excerpt: 'Na honderden A/B-tests onthullen we welke contentstrategie op LinkedIn consistent resultaat geeft — en wat je direct moet stoppen.',
-    content: '',
-    category: 'Social Media',
-    tags: ['LinkedIn', 'Content', 'Strategie'],
-    date: '2026-02-28',
-    readTime: 7,
-    featured: false,
-    slug: 'linkedin-strategie-2025',
-    author: 'Julian van Beek'
-  },
-  {
-    id: 'seo-ai-tijdperk',
-    title: 'SEO in het AI-tijdperk: overleven en domineren',
-    excerpt: 'Google\'s AI Overviews veranderen alles. Zo pas jij je strategie aan om zichtbaar te blijven en meer organisch verkeer te genereren.',
-    content: '',
-    category: 'Digitale Marketing',
-    tags: ['SEO', 'AI', 'Google'],
-    date: '2026-02-20',
-    readTime: 8,
-    featured: false,
-    slug: 'seo-ai-tijdperk',
-    author: 'Julian van Beek'
-  },
-  {
-    id: 'chatbot-roi',
-    title: 'De ROI van een AI-chatbot: realistische cijfers',
-    excerpt: 'Hoeveel levert een goed gebouwde AI-chatbot daadwerkelijk op? We analyseren data van 40 implementaties en trekken heldere conclusies.',
-    content: '',
-    category: 'AI Oplossingen',
-    tags: ['Chatbot', 'ROI', 'AI'],
-    date: '2026-02-12',
-    readTime: 6,
-    featured: false,
-    slug: 'chatbot-roi-analyse',
-    author: 'Julian van Beek'
-  },
-  {
-    id: 'social-media-trends',
-    title: 'Social media trends die je merk groot maken in 2025',
-    excerpt: 'Van short-form video tot social commerce — de trends die dit jaar het verschil maken voor jouw organische bereik en conversie.',
-    content: '',
-    category: 'Social Media',
-    tags: ['Trends', 'Video', 'Bereik'],
-    date: '2026-02-05',
-    readTime: 5,
-    featured: false,
-    slug: 'social-media-trends-2025',
-    author: 'Julian van Beek'
-  }
 ];
 
 /* ── 2. RENDER FUNCTIES ────────────────────────────── */
@@ -152,8 +73,8 @@ function renderBlogGrid(container, posts = BLOG_POSTS, layout = 'grid-featured')
   if (layout === 'grid-featured') {
     // Eerste post groot, rest klein
     container.innerHTML = posts.map((post, i) => `
-      <article class="blog-card ${i === 0 ? 'featured' : ''}"
-               onclick="location.href='/blog/' + post.slug">
+      <article class="blog-card ${i === 0 ? 'featured' : ''}" style="cursor:pointer;"
+               onclick="window.location.href='/blog/' + post.slug">
         <div class="blog-card-img">
           <div class="blog-card-img-bg" style="background:linear-gradient(135deg,var(--black3),rgba(201,168,76,${i===0?.08:.04}))">
             <div class="blog-img-icon">${getCategoryIcon(post.category)}</div>
