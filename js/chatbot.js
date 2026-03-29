@@ -285,9 +285,7 @@ function openWhatsApp() {
   const msgs = chatHistory.map(m => {
     const wie = m.role === 'user' ? 'Bezoeker' : 'Rocket AI';
     return `${wie}: ${m.content}`;
-  }).join('
-
-');
+  }).join('%0A%0A');
 
   const intro = 'Hallo Julian, ik kom via de website chatbot. Hier is ons gesprek:%0A%0A';
   const text = encodeURIComponent(intro + msgs);
