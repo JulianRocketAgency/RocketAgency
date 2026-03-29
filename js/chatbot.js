@@ -282,14 +282,20 @@ function removeTyping(id) {
 
 function openWhatsApp() {
   const phone = '31629812928';
-  const msgs = chatHistory.map(m => {
-    const wie = m.role === 'user' ? 'Bezoeker' : 'Rocket AI';
-    return `${wie}: ${m.content}`;
-  }).join('%0A%0A');
 
-  const intro = 'Hallo Julian, ik kom via de website chatbot. Hier is ons gesprek:%0A%0A';
-  const text = encodeURIComponent(intro + msgs);
-  window.open(`https://wa.me/${phone}?text=${text}`, '_blank');
+  const msgs = chatHistory.map(m => {
+    const wie = m.role === 'user' ? '👤 Bezoeker' : '🤖 Rocket AI';
+    return wie + ':\n' + m.content;
+  }).join('\n\n');
+
+  const text = encodeURIComponent(
+    '👋 Hallo Julian, ik kom via de chatbot op rocket-agency.nl.\n\n' +
+    '💬 *Ons gesprek:*\n\n' +
+    msgs + '\n\n' +
+    '📅 Ik wil graag een afspraak maken.'
+  );
+
+  window.open('https://wa.me/' + phone + '?text=' + text, '_blank');
 }
 
 function scrollToBottom() {
