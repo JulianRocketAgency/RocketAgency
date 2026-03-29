@@ -289,9 +289,7 @@ function openWhatsApp() {
 
 ');
 
-  const intro = 'Hallo Julian, ik kom via de website chatbot. Hier is ons gesprek:
-
-';
+  const intro = 'Hallo Julian, ik kom via de website chatbot. Hier is ons gesprek:%0A%0A';
   const text = encodeURIComponent(intro + msgs);
   window.open(`https://wa.me/${phone}?text=${text}`, '_blank');
 }
