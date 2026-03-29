@@ -232,7 +232,7 @@ function appendMessage(role, text) {
   // Toon WhatsApp knop na 2 gebruikersberichten + stuur hint bericht
   if (role === 'user') {
     const userMsgs = document.querySelectorAll('.chat-msg-user').length;
-    if (userMsgs >= 2) {
+    if (userMsgs >= 1) {
       const waBtn = document.getElementById('chat-whatsapp');
       if (waBtn && waBtn.style.display === 'none') {
         waBtn.style.display = 'block';
