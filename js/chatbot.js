@@ -114,7 +114,7 @@ function buildChatbot() {
           Verder op WhatsApp
         </button>
       </div>
-      <div id="chat-footer-note">Rocket Agency AI · Aangedreven door Together AI</div>
+      
     </div>
   `;
 
