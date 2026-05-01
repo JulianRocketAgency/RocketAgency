@@ -287,7 +287,7 @@
     .klanten-track:hover { animation-play-state: paused; }
     @keyframes marquee {
       0%   { transform: translateX(0); }
-      100% { transform: translateX(-50%); }
+      100% { transform: translateX(var(--scroll-width, -50%)); }
     }
     .klant-logo {
       height: 72px; width: auto; max-width: 180px;
@@ -575,17 +575,14 @@
       try {
         const res = await fetch('/img/klanten/klanten.json');
         const klanten = await res.json();
-
         if (!klanten.length) return;
 
-        // Bouw logo elementen
         const makeItem = (k) => {
           const img = document.createElement('img');
           img.className = 'klant-logo';
           img.alt = k.naam;
           img.title = k.naam;
           img.onerror = function() {
-            // Als logo niet bestaat: toon naam als placeholder
             const span = document.createElement('div');
             span.className = 'klant-placeholder';
             span.textContent = k.naam;
@@ -595,10 +592,20 @@
           return img;
         };
 
-        // Vul track met logos, dupliceer voor naadloze loop
-        [...klanten, ...klanten].forEach(k => {
-          track.appendChild(makeItem(k));
-        });
+        // Vul 6x om altijd genoeg content te hebben voor naadloze loop
+        const copies = Math.max(6, Math.ceil(12 / klanten.length));
+        for (let i = 0; i < copies; i++) {
+          klanten.forEach(k => track.appendChild(makeItem(k)));
+        }
+
+        // Bereken juiste animatieduur op basis van aantal logos
+        // Elke logo is ~260px breed inclusief gap
+        const totalWidth = klanten.length * 260;
+        const duration = Math.max(20, totalWidth / 60); // pixels per seconde
+        track.style.animationDuration = duration + 's';
+
+        // Reset animatie op het juiste punt — animeer alleen 1/copies deel
+        track.style.setProperty('--scroll-width', '-' + (100 / copies) + '%');
 
         // Genereer verborgen backlinks voor SEO
         const backlinksEl = document.getElementById('klanten-backlinks');
@@ -616,7 +623,6 @@
         }
 
       } catch(e) {
-        // Geen klanten.json of leeg — verberg sectie
         const sec = document.getElementById('klanten');
         if (sec) sec.style.display = 'none';
       }
