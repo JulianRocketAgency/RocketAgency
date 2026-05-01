@@ -1,17 +1,37 @@
 [
   {
-    "naam": "Klant 1",
-    "bestand": "klant1.png",
-    "website": "https://www.klant1.nl"
+    "naam": "Hoogenraad Handelskwekerijen",
+    "bestand": "hoogenraad.svg",
+    "website": "https://www.hoogenraadplant.nl"
   },
   {
-    "naam": "Klant 2",
-    "bestand": "klant2.png",
-    "website": "https://www.klant2.nl"
+    "naam": "Otterlo.nl",
+    "bestand": "otterlo.png",
+    "website": "https://www.otterlo.nl"
   },
   {
-    "naam": "Klant 3",
-    "bestand": "klant3.png",
-    "website": "https://www.klant3.nl"
+    "naam": "Nationaal Park De Hoge Veluwe",
+    "bestand": "hogeveluwe.svg",
+    "website": "https://hogeveluwe.nl/"
+  },
+  {
+    "naam": "IJsproeverij.nl",
+    "bestand": "ijsproeverij.png",
+    "website": "https://ijsproeverij.nl/"
+  },
+  {
+    "naam": "Steak Store",
+    "bestand": "steakstore.png",
+    "website": "https://steakstore.nl/"
+  },
+  {
+    "naam": "Weegtechniek Holland",
+    "bestand": "weegtechniek.png",
+    "website": "https://weegtechniek.nl/"
+  },
+  {
+    "naam": "Ministerie van Defensie",
+    "bestand": "defensie.png",
+    "website": "https://defensie.nl/"
   }
 ]
