@@ -33,5 +33,20 @@
     "naam": "Ministerie van Defensie",
     "bestand": "defensie.png",
     "website": "https://defensie.nl/"
+  },
+  {
+    "naam": "Mondzorg Wekerom",
+    "bestand": "mondzorgwekerom.png",
+    "website": "https://mondzorgwekerom.nl/"
+  },
+  {
+    "naam": "Fleett",
+    "bestand": "fleett.png",
+    "website": "https://fleett.nl/"
+  },
+  {
+    "naam": "Seductionail",
+    "bestand": "seductionail.png",
+    "website": "https://seductionail.nl/"
   }
 ]
