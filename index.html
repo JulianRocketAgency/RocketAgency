@@ -290,14 +290,14 @@
       100% { transform: translateX(var(--scroll-width, -50%)); }
     }
     .klant-logo {
-      height: 72px; width: auto; max-width: 180px;
+      height: 90px; width: auto; max-width: 220px;
       object-fit: contain;
-      opacity: .85;
-      filter: none;
+      opacity: .95;
+      filter: drop-shadow(0 4px 16px rgba(0,0,0,.5));
       transition: opacity .3s, filter .3s;
       flex-shrink: 0;
     }
-    .klant-logo:hover { opacity: 1; filter: brightness(1.1); }
+    .klant-logo:hover { opacity: 1; filter: drop-shadow(0 6px 24px rgba(0,0,0,.6)) brightness(1.08); }
     .klant-placeholder {
       height: 48px; padding: 0 24px;
       display: flex; align-items: center; justify-content: center;
