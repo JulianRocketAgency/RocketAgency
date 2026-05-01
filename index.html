@@ -600,6 +600,21 @@
           track.appendChild(makeItem(k));
         });
 
+        // Genereer verborgen backlinks voor SEO
+        const backlinksEl = document.getElementById('klanten-backlinks');
+        if (backlinksEl) {
+          klanten.forEach(k => {
+            if (k.website) {
+              const a = document.createElement('a');
+              a.href = k.website;
+              a.rel = 'dofollow';
+              a.title = k.naam + ' — klant van Rocket Agency';
+              a.textContent = k.naam;
+              backlinksEl.appendChild(a);
+            }
+          });
+        }
+
       } catch(e) {
         // Geen klanten.json of leeg — verberg sectie
         const sec = document.getElementById('klanten');

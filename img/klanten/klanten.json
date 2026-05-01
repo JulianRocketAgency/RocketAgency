@@ -1,5 +1,17 @@
 [
-  { "naam": "Klant 1", "bestand": "klant1.png" },
-  { "naam": "Klant 2", "bestand": "klant2.png" },
-  { "naam": "Klant 3", "bestand": "klant3.png" }
+  {
+    "naam": "Klant 1",
+    "bestand": "klant1.png",
+    "website": "https://www.klant1.nl"
+  },
+  {
+    "naam": "Klant 2",
+    "bestand": "klant2.png",
+    "website": "https://www.klant2.nl"
+  },
+  {
+    "naam": "Klant 3",
+    "bestand": "klant3.png",
+    "website": "https://www.klant3.nl"
+  }
 ]
