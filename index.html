@@ -249,6 +249,65 @@
     .cta-sub { font-size: 1.05rem; color: var(--muted); max-width: 480px; margin: 0 auto 52px; line-height: 1.8; }
     .cta-actions { display: flex; gap: 20px; justify-content: center; align-items: center; }
 
+
+    /* ── KLANTEN BANNER ─────────────────────────────── */
+    #klanten {
+      position: relative; z-index: 2;
+      padding: 80px 0;
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      background: var(--black2);
+      overflow: hidden;
+    }
+    .klanten-label {
+      text-align: center;
+      font-family: var(--font-ui);
+      font-size: .68rem; letter-spacing: .3em;
+      text-transform: uppercase; color: var(--muted);
+      margin-bottom: 44px;
+      display: flex; align-items: center; justify-content: center; gap: 20px;
+    }
+    .klanten-label::before, .klanten-label::after {
+      content: ''; flex: 1; max-width: 120px; height: 1px;
+      background: linear-gradient(90deg, transparent, var(--border));
+    }
+    .klanten-label::after {
+      background: linear-gradient(270deg, transparent, var(--border));
+    }
+    .klanten-track-wrap {
+      overflow: hidden;
+      mask-image: linear-gradient(90deg, transparent 0%, black 10%, black 90%, transparent 100%);
+      -webkit-mask-image: linear-gradient(90deg, transparent 0%, black 10%, black 90%, transparent 100%);
+    }
+    .klanten-track {
+      display: flex; gap: 60px; align-items: center;
+      width: max-content;
+      animation: marquee 30s linear infinite;
+    }
+    .klanten-track:hover { animation-play-state: paused; }
+    @keyframes marquee {
+      0%   { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+    .klant-logo {
+      height: 48px; width: auto;
+      object-fit: contain;
+      opacity: .45;
+      filter: grayscale(100%) brightness(1.5);
+      transition: opacity .3s, filter .3s;
+      flex-shrink: 0;
+    }
+    .klant-logo:hover { opacity: .9; filter: grayscale(0%) brightness(1); }
+    .klant-placeholder {
+      height: 48px; padding: 0 24px;
+      display: flex; align-items: center; justify-content: center;
+      border: 1px solid var(--border); border-radius: 2px;
+      font-family: var(--font-ui); font-size: .72rem;
+      letter-spacing: .15em; text-transform: uppercase;
+      color: var(--muted); opacity: .4;
+      white-space: nowrap; flex-shrink: 0;
+    }
+
     @media (max-width: 900px) {
       .diensten-header, .werkwijze-steps, .results-inner, .testimonials { grid-template-columns: 1fr; }
       .diensten-grid { grid-template-columns: 1fr; }
@@ -300,6 +359,17 @@
   </section>
 
   <div class="divider"></div>
+
+  <!-- KLANTEN BANNER -->
+  <section id="klanten">
+    <div class="klanten-label">Onze klanten</div>
+    <div class="klanten-track-wrap">
+      <div class="klanten-track" id="klanten-track">
+        <!-- Wordt dynamisch gevuld via klanten.json -->
+      </div>
+    </div>
+  </section>
+
 
   <!-- DIENSTEN PREVIEW -->
   <section id="diensten-preview">
@@ -496,6 +566,48 @@
         </article>
       `).join('');
     }
+
+    // Klanten banner laden vanuit klanten.json
+    async function loadKlanten() {
+      const track = document.getElementById('klanten-track');
+      if (!track) return;
+
+      try {
+        const res = await fetch('/img/klanten/klanten.json');
+        const klanten = await res.json();
+
+        if (!klanten.length) return;
+
+        // Bouw logo elementen
+        const makeItem = (k) => {
+          const img = document.createElement('img');
+          img.className = 'klant-logo';
+          img.alt = k.naam;
+          img.title = k.naam;
+          img.onerror = function() {
+            // Als logo niet bestaat: toon naam als placeholder
+            const span = document.createElement('div');
+            span.className = 'klant-placeholder';
+            span.textContent = k.naam;
+            this.replaceWith(span);
+          };
+          img.src = '/img/klanten/' + k.bestand;
+          return img;
+        };
+
+        // Vul track met logos, dupliceer voor naadloze loop
+        [...klanten, ...klanten].forEach(k => {
+          track.appendChild(makeItem(k));
+        });
+
+      } catch(e) {
+        // Geen klanten.json of leeg — verberg sectie
+        const sec = document.getElementById('klanten');
+        if (sec) sec.style.display = 'none';
+      }
+    }
+
+    loadKlanten();
 
     // Dienst cards klikbaar
     document.querySelectorAll('.dienst-card').forEach((card, i) => {
