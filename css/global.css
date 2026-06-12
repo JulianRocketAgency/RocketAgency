@@ -276,3 +276,119 @@ footer {
   body { cursor: auto; }
   #cursor, #cursor-ring { display: none; }
 }
+
+/* ═══════════════════════════════════════════════════════
+   V2 — AWARD LAYER (GSAP + Three.js + Mobile)
+═══════════════════════════════════════════════════════ */
+
+/* ── WEBGL CANVAS ───────────────────────────────────── */
+#webgl {
+  position: fixed; inset: 0; z-index: 0;
+  pointer-events: none; display: block;
+}
+
+/* ── SCROLL PROGRESS ────────────────────────────────── */
+#scroll-progress {
+  position: fixed; top: 0; left: 0; z-index: 200;
+  width: 100%; height: 2px;
+  background: linear-gradient(90deg, var(--gold), var(--gold2));
+  transform-origin: 0 50%;
+  transform: scaleX(0);
+  pointer-events: none;
+}
+
+/* ── HERO CHAR SPLIT ────────────────────────────────── */
+.ch-mask {
+  display: inline-block; overflow: hidden; vertical-align: bottom;
+  /* ruimte voor staartletters (g, j) en cursieve glyphs */
+  padding: 0 .05em .14em 0;
+  margin: 0 -.05em -.14em 0;
+}
+.ch { display: inline-block; will-change: transform; }
+
+/* ── MAGNETIC ───────────────────────────────────────── */
+.btn-primary, .btn-outline, .nav-cta { will-change: transform; }
+
+/* ── DIENST CARD TILT ───────────────────────────────── */
+.dienst-card { transform-style: preserve-3d; will-change: transform; }
+
+/* ── MOBILE BURGER ──────────────────────────────────── */
+.nav-burger {
+  display: none;
+  width: 44px; height: 44px;
+  background: none; border: 1px solid var(--border); border-radius: 2px;
+  cursor: pointer; position: relative; z-index: 1001;
+  transition: border-color .3s;
+}
+.nav-burger span {
+  position: absolute; left: 12px; right: 12px; height: 1.5px;
+  background: var(--gold);
+  transition: transform .4s var(--ease-silk), opacity .3s, top .4s var(--ease-silk);
+}
+.nav-burger span:nth-child(1) { top: 15px; }
+.nav-burger span:nth-child(2) { top: 21px; }
+.nav-burger span:nth-child(3) { top: 27px; }
+.nav-burger.open span:nth-child(1) { top: 21px; transform: rotate(45deg); }
+.nav-burger.open span:nth-child(2) { opacity: 0; }
+.nav-burger.open span:nth-child(3) { top: 21px; transform: rotate(-45deg); }
+
+/* ── MOBILE MENU OVERLAY ────────────────────────────── */
+#mobile-menu {
+  position: fixed; inset: 0; z-index: 1000;
+  background: rgba(8,8,8,.97);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  display: flex; flex-direction: column;
+  justify-content: center; align-items: flex-start;
+  padding: 0 32px;
+  opacity: 0; visibility: hidden;
+  transition: opacity .5s var(--ease-silk), visibility .5s;
+}
+#mobile-menu.open { opacity: 1; visibility: visible; }
+#mobile-menu .mm-links { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+#mobile-menu .mm-links a {
+  font-family: var(--font-display);
+  font-size: clamp(2.6rem, 11vw, 4rem);
+  font-weight: 300; line-height: 1.25; color: var(--white);
+  display: inline-flex; align-items: baseline; gap: 16px;
+  opacity: 0; transform: translateY(34px);
+  transition: opacity .6s var(--ease-silk), transform .6s var(--ease-silk), color .3s;
+}
+#mobile-menu .mm-links a em { font-style: italic; color: var(--gold); font-size: .42em; letter-spacing: .08em; }
+#mobile-menu .mm-links a:active { color: var(--gold); }
+#mobile-menu.open .mm-links a { opacity: 1; transform: translateY(0); }
+#mobile-menu.open .mm-links li:nth-child(1) a { transition-delay: .12s; }
+#mobile-menu.open .mm-links li:nth-child(2) a { transition-delay: .19s; }
+#mobile-menu.open .mm-links li:nth-child(3) a { transition-delay: .26s; }
+#mobile-menu.open .mm-links li:nth-child(4) a { transition-delay: .33s; }
+#mobile-menu .mm-cta {
+  margin-top: 48px;
+  opacity: 0; transform: translateY(24px);
+  transition: opacity .6s var(--ease-silk) .42s, transform .6s var(--ease-silk) .42s;
+}
+#mobile-menu.open .mm-cta { opacity: 1; transform: translateY(0); }
+#mobile-menu .mm-footer {
+  position: absolute; bottom: 36px; left: 32px; right: 32px;
+  display: flex; justify-content: space-between;
+  font-family: var(--font-ui); font-size: .68rem;
+  letter-spacing: .2em; text-transform: uppercase; color: var(--muted);
+  opacity: 0; transition: opacity .6s ease .5s;
+}
+#mobile-menu.open .mm-footer { opacity: 1; }
+body.menu-locked { overflow: hidden; }
+
+@media (max-width: 900px) {
+  .nav-burger { display: block; }
+}
+
+/* ── REDUCED MOTION ─────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .reveal { opacity: 1 !important; transform: none !important; transition: none !important; }
+  .klanten-track { animation: none !important; }
+  .hero-eyebrow, .hero-h1, .hero-sub, .hero-actions, .hero-scroll {
+    animation: none !important; opacity: 1 !important;
+  }
+  .scroll-line { animation: none !important; }
+  *, *::before, *::after { transition-duration: .01ms !important; animation-duration: .01ms !important; }
+}
