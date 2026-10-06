@@ -316,7 +316,7 @@
       container.innerHTML = posts.map(p => `
         <article class="blog-card-uni" style="cursor:pointer" onclick="window.location='/blog/${p.slug}'">
           <div class="bcu-img" style="background:linear-gradient(145deg,var(--black3),${catColors[p.category]||'rgba(201,168,76,.06)'})">
-            <div class="bcu-icon" style="color:rgba(201,168,76,.3)">${catIcons[p.category]||''}</div>
+            <img src="/img/blog/${p.slug}.jpg" alt="${p.title}" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover"/>
             <span class="bcu-cat">${p.category}</span>
           </div>
           <div class="bcu-body">

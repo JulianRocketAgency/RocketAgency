@@ -76,9 +76,7 @@ function renderBlogGrid(container, posts = BLOG_POSTS, layout = 'grid-featured')
       <article class="blog-card ${i === 0 ? 'featured' : ''}" style="cursor:pointer;"
                onclick="window.location.href='/blog/' + post.slug">
         <div class="blog-card-img">
-          <div class="blog-card-img-bg" style="background:linear-gradient(135deg,var(--black3),rgba(201,168,76,${i===0?.08:.04}))">
-            <div class="blog-img-icon">${getCategoryIcon(post.category)}</div>
-          </div>
+          <img src="/img/blog/${post.slug}.jpg" alt="${post.title}" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block"/>
         </div>
         <div class="blog-card-body">
           <div class="blog-cat">${post.category}</div>
@@ -103,7 +101,7 @@ function renderBlogGrid(container, posts = BLOG_POSTS, layout = 'grid-featured')
     container.innerHTML = posts.map((post, i) => `
       <article class="blog-card-uni" style="cursor:pointer;" onclick="window.location.href='/blog/' + '${post.slug}'">
         <div class="bcu-img" style="background:linear-gradient(145deg,var(--black3),${catColors[post.category]||'rgba(201,168,76,.06)'})">
-          <div class="bcu-icon">${getCategoryIcon(post.category)}</div>
+          <img src="/img/blog/${post.slug}.jpg" alt="${post.title}" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover"/>
           <span class="bcu-cat">${post.category}</span>
         </div>
         <div class="bcu-body">
