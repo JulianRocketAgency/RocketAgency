@@ -10,6 +10,33 @@
 
 /* ── 1. SEED DATA ──────────────────────────────────── */
 const BLOG_POSTS = [
+  {
+    id: 'ai-chatbot-klantenservice',
+    title: 'AI chatbot voor klantenservice: wat het MKB er écht aan heeft',
+    excerpt: 'Een AI chatbot beantwoordt klantvragen 24/7, kwalificeert leads en ontlast je team. Zo zet je een chatbot in die écht werkt.',
+    content: '',
+    category: 'AI Oplossingen',
+    tags: ['Chatbot', 'Klantenservice', 'MKB'],
+    date: '2026-10-06',
+    readTime: 7,
+    featured: false,
+    slug: 'ai-chatbot-klantenservice-mkb',
+    author: 'Julian van Beek'
+  },
+  {
+    id: 'bedrijfsprocessen-automatiseren',
+    title: 'Bedrijfsprocessen automatiseren: 5 processen die je nu al kunt automatiseren',
+    excerpt: 'Van leadopvolging tot facturatie: vijf concrete bedrijfsprocessen die je als MKB-bedrijf kunt overlaten aan software.',
+    content: '',
+    category: 'Automatisering',
+    tags: ['Automatisering', 'MKB', 'Workflows'],
+    date: '2026-10-06',
+    readTime: 6,
+    featured: false,
+    slug: 'bedrijfsprocessen-automatiseren-mkb',
+    author: 'Julian van Beek'
+  },
+  {
     id: 'agents-2025',
     title: 'AI Agents: waarom 2025 het jaar van autonome software wordt',
     excerpt: 'Van simpele chatbots naar agents die zelfstandig taken uitvoeren, code schrijven en beslissingen nemen. Wat betekent dit voor jouw bedrijf?',

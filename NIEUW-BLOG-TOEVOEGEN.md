@@ -41,6 +41,14 @@ Verander bovenaan:
 
 ---
 
+## Stap 2b — Cover-afbeelding
+
+Elk artikel heeft een cover op `img/blog/<slug>.jpg` (16:9, bijv. 1344×752, JPG). Zonder dit bestand blijft de afbeelding leeg op `/blog`, de homepage en in het artikel zelf. Zet in het artikel ook `<img class="artikel-hero" ...>` en een `<link rel="canonical">`.
+
+## Stap 2c — Sitemap
+
+Voeg de nieuwe URL (`https://rocket-agency.nl/blog/<slug>`) toe aan `sitemap.xml` en ook aan `POSTS` in `blog.html` en `HOME_POSTS` in `index.html`.
+
 ## Stap 3 — Voeg toe aan blog-engine.js
 
 Open `js/blog-engine.js` en voeg bovenaan in `BLOG_POSTS = [` toe:
