@@ -11,6 +11,71 @@
 /* ── 1. SEED DATA ──────────────────────────────────── */
 const BLOG_POSTS = [
   {
+    id: 'social-media-automatiseren-ai',
+    title: "Social media automatiseren met AI: meer bereik in minder tijd",
+    excerpt: "Gebruik AI en automatisering voor social media zonder dat het kunstmatig voelt: plan, maak en analyseer content met behoud van je eigen stem.",
+    content: '',
+    category: 'Social Media',
+    tags: ['Social Media', 'AI', 'Content'],
+    date: '2026-10-18',
+    readTime: 7,
+    featured: false,
+    slug: 'social-media-automatiseren-ai',
+    author: 'Julian van Beek'
+  },
+  {
+    id: 'lokale-seo-mkb-gevonden-worden',
+    title: "Lokale SEO voor MKB: zo word je gevonden in je eigen regio",
+    excerpt: "Gevonden worden door klanten in de buurt: Google Bedrijfsprofiel, reviews, lokale content en een technisch gezonde website.",
+    content: '',
+    category: 'Digitale Marketing',
+    tags: ['SEO', 'Lokaal', 'Google'],
+    date: '2026-10-18',
+    readTime: 7,
+    featured: false,
+    slug: 'lokale-seo-mkb-gevonden-worden',
+    author: 'Julian van Beek'
+  },
+  {
+    id: 'ai-avg-veilig-gebruiken-bedrijf',
+    title: "AI veilig gebruiken in je bedrijf: privacy, AVG en praktische regels",
+    excerpt: "Mag je klantgegevens in ChatGPT zetten? Praktische richtlijnen voor veilig en AVG-bewust werken met AI in je bedrijf.",
+    content: '',
+    category: 'AI Oplossingen',
+    tags: ['AVG', 'Privacy', 'AI'],
+    date: '2026-10-18',
+    readTime: 7,
+    featured: false,
+    slug: 'ai-avg-veilig-gebruiken-bedrijf',
+    author: 'Julian van Beek'
+  },
+  {
+    id: 'make-n8n-python-automatisering-kiezen',
+    title: "Make, n8n of Python: welke automatiseringstool past bij jouw bedrijf?",
+    excerpt: "Een eerlijke vergelijking van Make, n8n en Python voor het automatiseren van bedrijfsprocessen, met een keuzehulp voor het MKB.",
+    content: '',
+    category: 'Automatisering',
+    tags: ['Make', 'n8n', 'Python'],
+    date: '2026-10-18',
+    readTime: 7,
+    featured: false,
+    slug: 'make-n8n-python-automatisering-kiezen',
+    author: 'Julian van Beek'
+  },
+  {
+    id: 'website-die-leads-oplevert-conversie',
+    title: "Een website die leads oplevert: 7 conversiefouten en hoe je ze oplost",
+    excerpt: "Veel bezoekers maar weinig aanvragen? Zeven veelgemaakte conversiefouten op MKB-websites en hoe je ze oplost.",
+    content: '',
+    category: 'Digitale Marketing',
+    tags: ['Conversie', 'Website', 'Leads'],
+    date: '2026-10-18',
+    readTime: 7,
+    featured: false,
+    slug: 'website-die-leads-oplevert-conversie',
+    author: 'Julian van Beek'
+  },
+  {
     id: 'ai-chatbot-klantenservice',
     title: 'AI chatbot voor klantenservice: wat het MKB er écht aan heeft',
     excerpt: 'Een AI chatbot beantwoordt klantvragen 24/7, kwalificeert leads en ontlast je team. Zo zet je een chatbot in die écht werkt.',
