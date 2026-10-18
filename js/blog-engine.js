@@ -25,7 +25,7 @@ const BLOG_POSTS = [
   },
   {
     id: 'lokale-seo-mkb-gevonden-worden',
-    title: "Lokale SEO voor MKB: zo word je gevonden in je eigen regio",
+    title: "Lokale SEO: zo word je gevonden in je eigen regio",
     excerpt: "Gevonden worden door klanten in de buurt: Google Bedrijfsprofiel, reviews, lokale content en een technisch gezonde website.",
     content: '',
     category: 'Digitale Marketing',
@@ -52,7 +52,7 @@ const BLOG_POSTS = [
   {
     id: 'make-n8n-python-automatisering-kiezen',
     title: "Make, n8n of Python: welke automatiseringstool past bij jouw bedrijf?",
-    excerpt: "Een eerlijke vergelijking van Make, n8n en Python voor het automatiseren van bedrijfsprocessen, met een keuzehulp voor het MKB.",
+    excerpt: "Een eerlijke vergelijking van Make, n8n en Python voor het automatiseren van bedrijfsprocessen, met een keuzehulp voor jouw bedrijf.",
     content: '',
     category: 'Automatisering',
     tags: ['Make', 'n8n', 'Python'],
@@ -65,7 +65,7 @@ const BLOG_POSTS = [
   {
     id: 'website-die-leads-oplevert-conversie',
     title: "Een website die leads oplevert: 7 conversiefouten en hoe je ze oplost",
-    excerpt: "Veel bezoekers maar weinig aanvragen? Zeven veelgemaakte conversiefouten op MKB-websites en hoe je ze oplost.",
+    excerpt: "Veel bezoekers maar weinig aanvragen? Zeven veelgemaakte conversiefouten op bedrijfswebsites en hoe je ze oplost.",
     content: '',
     category: 'Digitale Marketing',
     tags: ['Conversie', 'Website', 'Leads'],
@@ -77,11 +77,11 @@ const BLOG_POSTS = [
   },
   {
     id: 'ai-chatbot-klantenservice',
-    title: 'AI chatbot voor klantenservice: wat het MKB er écht aan heeft',
+    title: 'AI chatbot voor klantenservice: wat bedrijven er écht aan hebben',
     excerpt: 'Een AI chatbot beantwoordt klantvragen 24/7, kwalificeert leads en ontlast je team. Zo zet je een chatbot in die écht werkt.',
     content: '',
     category: 'AI Oplossingen',
-    tags: ['Chatbot', 'Klantenservice', 'MKB'],
+    tags: ['Chatbot', 'Klantenservice', 'Bedrijven'],
     date: '2026-10-06',
     readTime: 7,
     featured: false,
@@ -91,10 +91,10 @@ const BLOG_POSTS = [
   {
     id: 'bedrijfsprocessen-automatiseren',
     title: 'Bedrijfsprocessen automatiseren: 5 processen die je nu al kunt automatiseren',
-    excerpt: 'Van leadopvolging tot facturatie: vijf concrete bedrijfsprocessen die je als MKB-bedrijf kunt overlaten aan software.',
+    excerpt: 'Van leadopvolging tot facturatie: vijf concrete bedrijfsprocessen die je als bedrijf kunt overlaten aan software.',
     content: '',
     category: 'Automatisering',
-    tags: ['Automatisering', 'MKB', 'Workflows'],
+    tags: ['Automatisering', 'Bedrijven', 'Workflows'],
     date: '2026-10-06',
     readTime: 6,
     featured: false,
@@ -306,7 +306,7 @@ const BlogWriter = {
 Je bent de contentstrateeg van Rocket Agency, een premium AI & digitale marketing bureau in Nederland.
 Je schrijft gezaghebbende, diepgaande blogartikelen die:
 - Echt waarde bieden (geen oppervlakkige content)
-- Doelgroep: ondernemers en marketing managers in het MKB
+- Doelgroep: ondernemers en marketing managers bij bedrijven van elke omvang
 - Toon: ${tone}, direct, resultaatgericht
 - Altijd onderbouwd met concrete voorbeelden en cijfers
 - Afsluit met een sterke CTA richting Rocket Agency
